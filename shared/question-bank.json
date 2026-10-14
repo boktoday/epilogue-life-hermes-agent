@@ -1,0 +1,293 @@
+{
+  "categories": [
+    "End-of-Life Planning",
+    "Legal & Financial",
+    "Healthcare Decisions",
+    "Relationships & Legacy",
+    "Personal Fulfillment",
+    "Final Arrangements",
+    "Digital & Personal Assets"
+  ],
+  "questions": [
+    {
+      "id": "eol-1",
+      "category": "End-of-Life Planning",
+      "title": "Have you identified and expressed any fears you have about dying?",
+      "description": "Understanding and expressing your fears about death helps reduce anxiety and allows loved ones to provide better emotional support during difficult times.",
+      "help": "Acknowledging fears is the first step to addressing them and finding peace.",
+      "required": false
+    },
+    {
+      "id": "legal-1",
+      "category": "Legal & Financial",
+      "title": "Have you considered writing a will, and if so, have you done it?",
+      "description": "A will ensures your assets are distributed according to your wishes and prevents family disputes. Without one, state laws determine how your property is divided.",
+      "help": "A will is one of the most important legal documents you can have.",
+      "required": true
+    },
+    {
+      "id": "legal-2",
+      "category": "Legal & Financial",
+      "title": "Have you appointed an executor for your will, and does this person know their role?",
+      "description": "An executor manages your estate after death, handling everything from paying debts to distributing assets. They need to understand their responsibilities beforehand.",
+      "help": "Choose someone trustworthy who lives nearby and is willing to take on this responsibility.",
+      "required": false
+    },
+    {
+      "id": "healthcare-1",
+      "category": "Healthcare Decisions",
+      "title": "Do you have a living will or advance healthcare directive in place?",
+      "description": "These documents specify your medical treatment preferences when you cannot communicate them yourself, ensuring your wishes are respected.",
+      "help": "Advance directives give you control over your medical care even when you can't speak for yourself.",
+      "required": true
+    },
+    {
+      "id": "healthcare-2",
+      "category": "Healthcare Decisions",
+      "title": "Have you discussed your end-of-life wishes with your loved ones and medical provider? What are those wishes?",
+      "description": "Open communication about your preferences prevents confusion and ensures everyone understands your values regarding medical care, comfort, and dignity.",
+      "help": "These conversations, though difficult, are gifts to your family and medical team.",
+      "required": false
+    },
+    {
+      "id": "personal-1",
+      "category": "Personal Fulfillment",
+      "title": "Have you considered what independence means to you, and how you can preserve it in your final years?",
+      "description": "Defining independence helps you make decisions about care, living arrangements, and medical treatments that align with your values and maintain your dignity.",
+      "help": "Understanding your definition of independence guides important future decisions.",
+      "required": false
+    },
+    {
+      "id": "relationships-1",
+      "category": "Relationships & Legacy",
+      "title": "Do you have a plan in place for your pets or dependent loved ones for when you can no longer care for them?",
+      "description": "Ensuring continued care for those who depend on you provides peace of mind and prevents them from being abandoned or neglected.",
+      "help": "Pets and dependents need advocates to ensure their continued wellbeing.",
+      "required": false
+    },
+    {
+      "id": "healthcare-3",
+      "category": "Healthcare Decisions",
+      "title": "Have you discussed with your healthcare provider about the quality of life vs. length of life treatments?",
+      "description": "Understanding treatment options helps you make informed decisions about aggressive interventions versus comfort care based on your personal values.",
+      "help": "Quality of life means different things to different people - define what it means to you.",
+      "required": false
+    },
+    {
+      "id": "healthcare-4",
+      "category": "Healthcare Decisions",
+      "title": "Have you made clear what treatments or interventions you wish to avoid at the end of your life?",
+      "description": "Specifying unwanted treatments prevents unnecessary suffering and ensures medical care aligns with your values and comfort preferences.",
+      "help": "Being specific about what you don't want is as important as stating what you do want.",
+      "required": false
+    },
+    {
+      "id": "relationships-2",
+      "category": "Relationships & Legacy",
+      "title": "Are there relationships in your life that need healing or closure?",
+      "description": "Addressing unresolved conflicts or expressing forgiveness can bring peace and prevent regrets, both for you and others involved.",
+      "help": "Healing relationships while you can is a gift to everyone involved.",
+      "required": false
+    },
+    {
+      "id": "personal-2",
+      "category": "Personal Fulfillment",
+      "title": "Are there any places you wish to visit or see one more time?",
+      "description": "Identifying meaningful places allows you to prioritize visits while you're able, creating lasting memories and achieving personal closure.",
+      "help": "Places hold memories and meaning - visiting them can provide comfort and completion.",
+      "required": false
+    },
+    {
+      "id": "personal-3",
+      "category": "Personal Fulfillment",
+      "title": "Are there any experiences you wish to have before your health deteriorates?",
+      "description": "Creating a ",
+      "help": "Life experiences often matter more than material possessions in our final reflections.",
+      "required": false
+    },
+    {
+      "id": "relationships-3",
+      "category": "Relationships & Legacy",
+      "title": "Have you expressed your gratitude to those who have been an integral part of your life?",
+      "description": "Expressing gratitude strengthens relationships, provides closure, and ensures important people know how much they've meant to you.",
+      "help": "Gratitude expressed is a precious gift that enriches both giver and receiver.",
+      "required": false
+    },
+    {
+      "id": "relationships-4",
+      "category": "Relationships & Legacy",
+      "title": "Have you talked openly about your death with your children, or young people in your life, in a way they can understand?",
+      "description": "Age-appropriate conversations about death help children process grief, understand life's natural cycle, and feel included rather than confused or abandoned.",
+      "help": "Children benefit from honest, gentle conversations about death and dying.",
+      "required": false
+    },
+    {
+      "id": "relationships-5",
+      "category": "Relationships & Legacy",
+      "title": "Have you considered leaving a written or recorded message for your loved ones after you're gone?",
+      "description": "Personal messages provide comfort, guidance, and connection after death, allowing your voice and wisdom to continue supporting those you love.",
+      "help": "Your words can provide comfort and guidance long after you're gone.",
+      "required": false
+    },
+    {
+      "id": "relationships-6",
+      "category": "Relationships & Legacy",
+      "title": "Have you considered creating a video or photo album that captures memories and stories from your life?",
+      "description": "Visual and audio recordings preserve your personality, stories, and memories for future generations who may never have met you.",
+      "help": "Stories and images become treasured family heirlooms that connect generations.",
+      "required": false
+    },
+    {
+      "id": "final-1",
+      "category": "Final Arrangements",
+      "title": "Are there any cultural, spiritual, or personal rituals you want to be observed towards the end of your life or after your death?",
+      "description": "Specifying meaningful rituals ensures your cultural, spiritual, or personal values are honored and provides comfort to both you and your loved ones.",
+      "help": "Rituals provide meaning, comfort, and connection to your beliefs and heritage.",
+      "required": false
+    },
+    {
+      "id": "personal-4",
+      "category": "Personal Fulfillment",
+      "title": "Are there any hobbies or activities that you have always wanted to try?",
+      "description": "Pursuing new interests while you're able can bring joy, accomplishment, and fulfillment to your remaining years.",
+      "help": "It's never too late to try something new and find joy in learning.",
+      "required": false
+    },
+    {
+      "id": "final-2",
+      "category": "Final Arrangements",
+      "title": "Have you thought about ways to commemorate your life, such as a living funeral or life celebration?",
+      "description": "Planning your own celebration allows you to participate in honoring your life and ensures the event reflects your personality and values.",
+      "help": "Celebrating your life while you're present can be meaningful for everyone involved.",
+      "required": false
+    },
+    {
+      "id": "healthcare-5",
+      "category": "Healthcare Decisions",
+      "title": "Do you have a 'do not resuscitate' (DNR) order in place if you wish not to be revived in case of a medical emergency?",
+      "description": "A DNR order ensures medical teams respect your wishes about resuscitation, preventing unwanted aggressive interventions during medical emergencies.",
+      "help": "DNR orders must be properly documented and accessible to emergency responders.",
+      "required": false
+    },
+    {
+      "id": "healthcare-6",
+      "category": "Healthcare Decisions",
+      "title": "Have you discussed the option of hospice care with your loved ones and healthcare provider?",
+      "description": "Understanding hospice care options ensures you receive appropriate comfort-focused care when curative treatments are no longer beneficial.",
+      "help": "Hospice care focuses on comfort, dignity, and quality of life during end-stage illness.",
+      "required": false
+    },
+    {
+      "id": "healthcare-7",
+      "category": "Healthcare Decisions",
+      "title": "Have you thought about where you'd prefer to spend your last days (at home, at a hospice, at a hospital)?",
+      "description": "Specifying your preferred location for end-of-life care helps ensure you receive care in an environment that provides comfort and aligns with your values.",
+      "help": "Your environment during final days can significantly impact your comfort and peace.",
+      "required": false
+    },
+    {
+      "id": "final-3",
+      "category": "Final Arrangements",
+      "title": "Have you planned your funeral or memorial service, and if so, have you communicated your plans to your loved ones?",
+      "description": "Pre-planning your service ensures it reflects your wishes, reduces stress on grieving family members, and can help control costs.",
+      "help": "Planning your own service ensures it truly reflects who you are and what you valued.",
+      "required": false
+    },
+    {
+      "id": "final-4",
+      "category": "Final Arrangements",
+      "title": "Have you considered organ or body donation, and if so, have you registered and informed your family?",
+      "description": "Organ and body donation can save lives and advance medical knowledge. Clear documentation and family awareness ensure your wishes are honored.",
+      "help": "Donation decisions should be clearly documented and communicated to family.",
+      "required": false
+    },
+    {
+      "id": "digital-1",
+      "category": "Digital & Personal Assets",
+      "title": "Have you decided who will take care of your digital legacy (online accounts, social media) after you're gone?",
+      "description": "Digital accounts need management after death. Designating someone to handle them prevents accounts from remaining active indefinitely and protects your digital privacy.",
+      "help": "Digital assets are increasingly important parts of our lives and legacies.",
+      "required": false
+    },
+    {
+      "id": "final-5",
+      "category": "Final Arrangements",
+      "title": "Have you considered writing your obituary, or providing input for it?",
+      "description": "Writing your own obituary ensures your life story is told accurately and includes what you consider most important about your life and values.",
+      "help": "Your obituary is often the first thing people read about your life - make it meaningful.",
+      "required": false
+    },
+    {
+      "id": "relationships-7",
+      "category": "Relationships & Legacy",
+      "title": "Have you thought about what you want people to remember about you?",
+      "description": "Reflecting on your desired legacy helps guide your remaining actions and provides clarity about the values and memories you want to leave behind.",
+      "help": "Your legacy is built through your actions, values, and the impact you have on others.",
+      "required": false
+    },
+    {
+      "id": "digital-2",
+      "category": "Digital & Personal Assets",
+      "title": "Are there specific personal belongings that you want to gift to certain individuals?",
+      "description": "Designating meaningful items for specific people prevents family disputes and ensures sentimental objects go to those who will treasure them most.",
+      "help": "Personal belongings often hold more emotional value than monetary worth.",
+      "required": false
+    },
+    {
+      "id": "healthcare-8",
+      "category": "Healthcare Decisions",
+      "title": "Have you expressed your wishes for end-of-life care in the event of Alzheimer's or other forms of dementia?",
+      "description": "Dementia-specific directives are crucial because the disease affects decision-making capacity. Early planning ensures your values guide care decisions.",
+      "help": "Dementia care decisions are complex and benefit greatly from advance planning.",
+      "required": false
+    },
+    {
+      "id": "legal-3",
+      "category": "Legal & Financial",
+      "title": "Have you made arrangements to manage any business or financial obligations you have after you're gone?",
+      "description": "Ongoing financial obligations need management after death. Planning prevents missed payments, penalties, and financial hardship for your estate or family.",
+      "help": "Financial obligations don't end with death - they need proper management.",
+      "required": false
+    },
+    {
+      "id": "personal-5",
+      "category": "Personal Fulfillment",
+      "title": "Have you reflected on your life, your accomplishments, and what you've learned?",
+      "description": "Life reflection helps you find meaning, appreciate your journey, and identify wisdom worth sharing with others.",
+      "help": "Reflection on your life's journey can bring peace and perspective.",
+      "required": false
+    },
+    {
+      "id": "personal-6",
+      "category": "Personal Fulfillment",
+      "title": "Have you made peace with the fact of your mortality?",
+      "description": "Accepting mortality can reduce anxiety, increase appreciation for life, and help you focus on what truly matters in your remaining time.",
+      "help": "Making peace with mortality is often key to living fully in the present.",
+      "required": false
+    },
+    {
+      "id": "relationships-8",
+      "category": "Relationships & Legacy",
+      "title": "Have you thought about the impact of your death on the world around you (e.g., community, environment)?",
+      "description": "Considering your broader impact helps you think about the legacy you leave beyond family and friends, including community contributions and environmental considerations.",
+      "help": "Your impact extends beyond personal relationships to your community and environment.",
+      "required": false
+    },
+    {
+      "id": "healthcare-9",
+      "category": "Healthcare Decisions",
+      "title": "What supplements or special dietary requirements do you have beyond those prescribed by a medical professional?",
+      "description": "Documenting your supplements, vitamins, and dietary needs helps ensure continuity of care and prevents harmful interactions with medications or treatments.",
+      "help": "Include over-the-counter supplements, vitamins, herbal remedies, and any special dietary restrictions or requirements.",
+      "required": false
+    },
+    {
+      "id": "personal-7",
+      "category": "Personal Fulfillment",
+      "title": "Have you found a way to discuss your death in a manner that feels comfortable for you?",
+      "description": "Finding comfortable ways to discuss death reduces anxiety and helps you have important conversations with loved ones about your wishes and feelings.",
+      "help": "Open, comfortable discussion about death benefits both you and your loved ones.",
+      "required": false
+    }
+  ]
+}
