@@ -1,0 +1,15 @@
+# Example Hermes configuration for Epilogue Life
+# Merge into your existing profile config; nothing here is mandatory.
+
+model: deepseek-v4-flash          # default: warm voice at low cost
+provider: openrouter
+
+# For the scheduled check-ins, a local model keeps everything offline and free
+# (see docs/local-models.md). Example:
+# model: qwen3:8b
+# provider: ollama
+# base_url: http://localhost:11434/v1
+
+skills_dir: skills
+# Point this at the folder created by scripts/setup-plan-folder.py
+plan_dir: ~/epilogue-life
