@@ -69,6 +69,8 @@ See `INSTALL.md`. Short version:
 
 Setup commands are in `schedules/README.md`.
 
+The daily rhythm is the ideal place for a **local model**: small, frequent and private, with nothing to pay per message and nothing leaving the machine. `docs/local-models.md` helps you pick one that fits.
+
 ---
 
 ## What it is not
