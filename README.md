@@ -107,11 +107,12 @@ PolyForm Noncommercial License 1.0.0. Free to use, change and share for any nonc
 Required Notice: Copyright 2026 Brendan O'Keefe (https://onetoeight.org)
 
 
+
 ## Voice echo: the plan in their own voice
 
-A working, verified feature. With the person's recorded consent, Epilogue can clone their voice and read their written plan back to their family, optionally as a talking portrait made from their photo.
+A working feature. With recorded consent, Epilogue clones the person's voice and reads their written plan back to their family, as spoken word. No avatar: voice only, by design.
 
-- Pipeline: MiniMax (or Fish Audio) clone, then Higgsfield Speak for the portrait, assembled with a spoken synthetic-voice disclosure card on every file.
-- Rails that never move: recorded consent, plan-only reading, their own voice only, disclosure first, deletion on request.
+- Every render opens with a spoken disclosure that the voice is synthetic and made with permission.
+- The voice reads what they wrote, never new sentences. Their own voice only. Deletion is one command.
 - Details: `docs/voice-echo.md`. Skill: `skills/voice-echo/`. Consent template: `shared/consent-template.md`.
-- Demo: [docs/demo/epilogue-voice-demo.mp4](docs/demo/epilogue-voice-demo.mp4) (55 seconds, disclosure card first).
+- Demo: [docs/demo/epilogue-voice-demo.mp3](docs/demo/epilogue-voice-demo.mp3) (49 seconds, disclosure line first).
