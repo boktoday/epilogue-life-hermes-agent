@@ -114,3 +114,4 @@ A working, verified feature. With the person's recorded consent, Epilogue can cl
 - Pipeline: MiniMax (or Fish Audio) clone, then Higgsfield Speak for the portrait, assembled with a spoken synthetic-voice disclosure card on every file.
 - Rails that never move: recorded consent, plan-only reading, their own voice only, disclosure first, deletion on request.
 - Details: `docs/voice-echo.md`. Skill: `skills/voice-echo/`. Consent template: `shared/consent-template.md`.
+- Demo: [docs/demo/epilogue-voice-demo.mp4](docs/demo/epilogue-voice-demo.mp4) (55 seconds, disclosure card first).
