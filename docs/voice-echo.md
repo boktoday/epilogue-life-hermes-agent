@@ -42,3 +42,29 @@ A 2,000-word plan is about 12 minutes of speech. Fish: about 2 cents. MiniMax HD
 ## Parked: talking portrait
 
 Tested 19 Oct 2026: portrait photo plus cloned audio through Higgsfield Speak (15-second clips, hard cut past 15s, video-only output needing a per-clip audio mux), assembled with a disclosure card. Verdict: parked by the owner as too uncanny and too much machinery for a funeral-adjacent product. Runway's public API has no lip-sync endpoint (404, verified). Kling Avatar V2 and OmniHuman remain the routes if this ever returns. The demo video and skill remain in git history.
+
+
+## Getting a family set up
+
+The agent walks them through this in order, in plain words, no jargon:
+
+1. **Offer the best route first: they read it themselves.** If the person is well enough to record, a phone recording of them reading their own plan beats any clone: no cloud, no cost, perfect fidelity. The clone exists for when reading the whole plan is too much, or for after their voice is gone.
+2. **Then the hosted clone**, if they still want it: 10 to 30 seconds of speech, recorded in the app, consent line first.
+3. **Or the offline clone** for families who refuse the cloud: NeuTTS Air on their own laptop, free, nothing leaves the house.
+
+### What the cloud really means
+
+Say it plainly, because families deserve the truth and not a euphemism:
+
+> **The cloud is someone else's computer.** A machine in a company's data centre, in a specific country, reached over the internet. When we clone a voice through a provider, four things travel there: the sample recording, the words being read, the voice model they build from it, and the audio they send back.
+
+What happens to the sample until it is deleted:
+
+- **Upload.** The recording leaves the device and lands on the provider's storage. From that moment, it is their copy, held under their terms.
+- **The clone.** Their systems build a voice profile from it. Many providers keep the original sample for identity checks and abuse monitoring, some keep it indefinitely unless asked to delete it.
+- **Who can reach it.** Provider staff and contractors under their policies; automated abuse scanning; law enforcement with the right paperwork; a security breach, which is rare and has happened to every large provider at some point. If the provider is overseas, foreign law applies, not Australian law.
+- **Rendering.** Every render also sends the plan's text to the provider to be spoken. The plan contains medical wishes, family names, private instructions. That text is processed on their servers too.
+- **Deleting.** An API delete removes the active voice model and the stored files. Backups expire on the provider's schedule, not instantly. Deletion is a request, not a shredder. What we can give the family is our own written record: what was deleted, when, and the provider's response, kept in their manifest.
+- **What cannot be undone.** Once a voice model has existed, no one can promise every copy is gone. That is exactly why consent, disclosure and the family's folder matter more than any technical measure.
+
+If any of that is unacceptable to the family, the answer is simple and we should say it without hesitation: use the local route, or record themselves. Never talk them into the cloud because it is cheaper and easier.
