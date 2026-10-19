@@ -52,21 +52,32 @@ The simplest avatar is not a stack of open-source models. It is a still portrait
 
 | Route | Input | Price | Notes |
 |---|---|---|---|
-| **Runway Lip Sync** | image/video + audio or text | 5 credits/sec = **/usr/bin/bash.05/s**; up to 40s per dialogue, 10 dialogues, 2K | Key already in this house (rw-generate-video skill). 3-minute plan ~=  |
-| **Kling Avatar V2** | photo + audio, follows audio length (up to 5 min) | **/usr/bin/bash.056/s** on fal, **/usr/bin/bash.035/s** on PoYo (standard) | Cheapest quality route; 30s ~ .05-1.68 |
-| **OmniHuman 1.5** (BytePlus/fal) | image + audio, 5-35s steps | **/usr/bin/bash.12-0.16/s** | Whole-body motion, best realism; 3 min ~= 2-29. Final-render tool, not iteration |
-| **Higgsfield Speak / Lipsync Studio** | photo + audio, several models (Kling Speak, Wan Speak, Speak 2.0) | per-generation, roughly /usr/bin/bash.86-4.22 per 5s clip by model | Key already in this house (Higgsfield). Good for a first test |
+| **Runway Lip Sync** | image/video + audio or text | 5 credits/sec = **$0.05/s**; up to 40s per dialogue, 10 dialogues, 2K | Key already in this house (rw-generate-video skill). 3-minute plan ~=  |
+| **Kling Avatar V2** | photo + audio, follows audio length (up to 5 min) | **$.056/s** on fal, **$.035/s** on PoYo (standard) | Cheapest quality route; 30s ~ .05-1.68 |
+| **OmniHuman 1.5** (BytePlus/fal) | image + audio, 5-35s steps | **$.12-0.16/s** | Whole-body motion, best realism; 3 min ~= 2-29. Final-render tool, not iteration |
+| **Higgsfield Speak / Lipsync Studio** | photo + audio, several models (Kling Speak, Wan Speak, Speak 2.0) | per-generation, roughly $.86-4.22 per 5s clip by model | Key already in this house (Higgsfield). Good for a first test |
 | **Seedance (BytePlus/fal)** | text/image to video | video only | No confirmed photo+audio lipsync path. Use for b-roll, not talking heads |
-| **Runway Act-Two** | needs a driving PERFORMANCE VIDEO | /usr/bin/bash.05/s | Wrong tool here: we have a photo and audio, not footage of the person acting |
+| **Runway Act-Two** | needs a driving PERFORMANCE VIDEO | $0.05/s | Wrong tool here: we have a photo and audio, not footage of the person acting |
 | **Open source (MuseTalk/LatentSync/SadTalker)** | photo then audio pipeline | free except hardware | Needs GPU (8-18GB VRAM); CPU demo is 3-5s per frame. Only for strict offline families |
 
-### Recommendation
+### Recommendation (verified 19 October 2026)
 
-- **Default: Runway Lip Sync** with the existing key. Photo plus the Fish-cloned audio, chapter by chapter (Runway allows up to 40s per dialogue, ten dialogues in one generation, so a 3-4 minute plan fits in one job at 2K). About  per plan at /usr/bin/bash.05/s.
-- **Budget: Kling Avatar V2 on fal or PoYo** (/usr/bin/bash.035-0.056/s). Same inputs, slightly more stiffness, roughly half the price.
-- **Premium: OmniHuman 1.5** when the family wants shoulders and hands moving, not just a face. Quote it as a premium option, not a default.
-- **First test: Higgsfield Speak** on the existing account, to see whether a talking photo lands emotionally before wiring a pipeline.
-- **Offline-only families: MuseTalk** on a GPU machine, or voice-only playback (no avatar). Never pretend the local route is cheap.
+The public Runway API has **no lip-sync endpoint**. `POST /v1/lip_sync` returns 404 on `api.dev.runwayml.com`; Act-Two needs a driving performance video, so Runway is not the route for one photo plus one audio file. The working default is **Higgsfield Speak** (`POST /v1/speak/higgsfield`), which rendered this build end to end.
+
+- **Default: Higgsfield Speak**, mid quality. Photo plus cloned audio, split into parts of 15 seconds or less.
+- **Longer or more realistic: Kling Avatar V2 on fal or PoYo**, $0.035 to 0.056 per second, up to 5 minutes of audio in one job.
+- **Premium: OmniHuman 1.5**, $0.12 to 0.16 per second, whole-body motion.
+- **Offline only: MuseTalk, LatentSync or SadTalker** on a local GPU. Never the default.
+
+### Verified build notes
+
+- Audio must be **WAV, mono**, and duration is an integer of **5, 10 or 15**. Anything longer is cut at 15 seconds, so split the script at sentence boundaries and assert each part is under 15.4 seconds.
+- Params are nested: `{"params": {"input_image": {"type": "image_url", "image_url": ...}, "input_audio": {"type": "audio_url", "audio_url": ...}, "prompt": ..., "quality": "mid", "duration": 15}}`.
+- Poll `GET /requests/<id>/status`; on `completed` the file is at `video.url` in that same JSON. `GET /requests/<id>` is 405.
+- Speak returns **video only**. Mux each clip with its audio: `ffmpeg -i clip.mp4 -i part.wav -map 0:v -map 1:a -c:a aac -shortest mux.mp4`, then concat.
+- Disclosure card: draw with Pillow (ffmpeg drawtext breaks on apostrophes), loop the PNG for 4 seconds with a silent track.
+- Finish with `loudnorm=I=-16:TP=-1.5:LRA=11`; the muxed AAC peaks at 0 dB without it.
+- Demo files: `docs/demo/epilogue-voice-demo.mp4`, `docs/demo/script.txt`.
 
 ### Assembly
 
