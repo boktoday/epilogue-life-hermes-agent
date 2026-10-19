@@ -1,5 +1,5 @@
 # Demo consent
 
-Recorded instruction from Brendan O'Keefe, 19 October 2026: build a talking-avatar demo from the website profile photo with invented wishes content, in his cloned voice, as a demonstration of the Epilogue Life voice-echo feature.
+Recorded instruction from Brendan O'Keefe, 19 October 2026: render a spoken-word demo of the Epilogue Life voice feature using his own cloned voice, with invented wishes content.
 
-The demo script is fictional. The voice is a synthetic copy of his own voice, used with his permission. The disclosure card at the start of the video states this.
+The script is fictional. The voice is a synthetic copy of his own voice, used with his permission. The recording opens with the disclosure line, as every render does.
