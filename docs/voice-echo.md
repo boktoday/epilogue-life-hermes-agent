@@ -70,4 +70,4 @@ The simplest avatar is not a stack of open-source models. It is a still portrait
 
 ### Assembly
 
-voice (.mp3) + portrait (.jpg) -> lipsync API per chapter -> ffmpeg concat ->  in the family folder, with a 5-second synthetic-disclosure card as the first frame and the consent file beside it. Same ethics section above applies unchanged, and the avatar never speaks anything the person did not write.
+voice (.mp3) + portrait (.jpg) -> lipsync API per chapter -> ffmpeg concat -> plan-avatar.mp4 in the family folder, with a 5-second synthetic-disclosure card as the first frame and the consent file beside it. Same ethics section above applies unchanged, and the avatar never speaks anything the person did not write.
