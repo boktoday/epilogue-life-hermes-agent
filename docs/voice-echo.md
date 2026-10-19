@@ -1,84 +1,44 @@
-# Voice echo: cloning the plan in your own voice
+# Voice echo: the plan read aloud, in their own voice
 
-The original Epilogue idea: the person's final plan, written in their own words and spoken in their own voice. This note records where that feature stands and what the options cost in October 2026.
+The feature: the person writes their plan, and Epilogue renders it as spoken word in a synthetic copy of their own voice, so their family can hear it in the voice they know. Voice only. No avatar.
 
-**Status in this repo:** no voice or cloning code exists yet. Neither `epilogue-life-hermes-agent` nor `epilogue-life-website` carries an ElevenLabs integration (searched for voice, audio, tts, eleven, clone: nothing). Whatever existed earlier lived outside these repos.
+## Why voice only
 
-## What changed since the ElevenLabs build
+A talking portrait was built and tested on 19 October 2026 (Higgsfield Speak, five clips, disclosed). It worked, and it was wrong: uncanny, fiddly, expensive per minute, and it turned a human document into a novelty. The spoken word version is simpler, warmer and cheaper by two orders of magnitude. The portrait route is parked, documented at the end.
 
-ElevenLabs is no longer the default. Three shifts:
+## Providers (checked October 2026)
 
-1. **Fish Audio S2** launched March 2026, ranks #1 on TTS-Arena, posts the best speaker-identity score (4.03) in an independent comparison, clones from about 10 seconds, and costs roughly **$15 per million UTF-8 bytes** against ElevenLabs' ~$165 per million characters. Retail plans from $11-15/month, free tier includes cloning.
-2. **MiniMax Speech 2.8** is a strong budget API ($60/M chars Turbo, $100/M HD, $1.50 per clone), but it is China-based, which matters for data residency on something as personal as a voice.
-3. **Open weights caught up.** Chatterbox (MIT, Resemble) gives the best small-GPU clone for free; Fish's S2 weights are public for research only; CPU-only machines can use NeuTTS Air (GGUF, BYO voice) at modest quality.
+| Route | Cost | Notes |
+|---|---|---|
+| **Fish Audio S2** | about $15 per million UTF-8 bytes; a 2,000-word plan is about 12KB, so about 2 cents | Default for new families. Clone from 10 seconds, 80+ languages, #1 TTS-Arena at launch, free tier includes cloning |
+| **MiniMax Speech 2.8** | $60/M Turbo, $100/M HD; $1.50 per voice clone | The house default: Brendan's own clone is already on this account. China-hosted, so flag data residency to families |
+| **NeuTTS Air** | free, laptop CPU, no account | The offline path for families who refuse any cloud. Small quality trade |
+| **Chatterbox (MIT)** | free, wants a small GPU | Better quality than NeuTTS, needs hardware |
+| **ElevenLabs** | about $165 per million characters | Only when the family asks, or needs 30+ minutes of training audio for a pro clone |
 
-## Recommendation for Epilogue
+## The pipeline
 
-**Hosted default: Fish Audio S2.** Ten seconds of sample, speech that carries the speaker's character, and a cost so small it is irrelevant at our scale. A final plan of 2,000 words is about 12,000 bytes, so roughly **2 cents per rendered plan**.
+1. **Consent, on record.** Spoken or written, filed in `shared/plan/voice/consent.md`. Template: `shared/consent-template.md`. No consent file, no clone, no render.
+2. **Sample.** Ten to thirty seconds of clean speech, saved as `shared/plan/voice/sample.wav`. Their own voice only.
+3. **Clone.** Fish (new families) or MiniMax (this house). Store the voice id in the manifest, never the sample, in the app config.
+4. **Script.** The plan is split into chapters at heading boundaries. Plain text, their words, no rewriting.
+5. **Render.** One file per chapter, plus one complete file. Every render opens with the disclosure line, spoken first:
+   > "This is a synthetic copy of <name>'s voice, made with permission."
+6. **Normalise.** `ffmpeg -af loudnorm=I=-16:TP=-1.5:LRA=11` to MP3 128k or AAC.
+7. **Manifest.** `shared/plan/voice/manifest.md`: consent, sample hash, provider, voice id, dates, file list.
 
-**Local option: NeuTTS Air** for families who refuse to upload a voice sample. It runs on a laptop CPU, no GPU, no account. Quality is below hosted, and it is still recognisably the speaker. Document the trade honestly and let the family choose.
+## Costs in practice
 
-**Keep ElevenLabs only if** a family asks for its pro voice cloning (30+ minutes of training audio) or a specific voice library voice. Otherwise it is six to eleven times the price for a marginal gain.
+A 2,000-word plan is about 12 minutes of speech. Fish: about 2 cents. MiniMax HD: well under a dollar. Either way the family pays once and owns the files.
 
-## The ethics, which matter more than the model
+## Rails
 
-Epilogue deals with people planning the end of their lives, and with families who may later want to hear a voice that is gone. That raises the bar:
+- Recorded consent, every time, before anything.
+- Their own voice only. Never a spouse, a parent, or anyone deceased without documented pre-death permission.
+- The voice reads what they wrote. It never generates new sentences. A clone that invents words is impersonation, not memory.
+- Every render opens with the disclosure line.
+- Files live in the family's own folder. Deletion is one command: remove the sample, the provider clone and every rendered file, then note it in the manifest.
 
-1. **Consent is recorded, not assumed.** Before cloning: the person reads a consent line on the sample recording (or signs one on paper, photographed and stored). No consent, no clone. Ever.
-2. **The consent covers the use.** "My voice may be used to read my plan back to my family" is the default scope. Anything broader needs its own yes.
-3. **Synthetic, and said so.** Every rendered audio starts with one spoken line: "This is a synthetic copy of {name}'s voice, made with their permission." File metadata carries the same. No deception of listeners, ever.
-4. **One voice, the person's own.** Never clone a third party (a spouse, a parent, someone deceased without documented pre-death permission).
-5. **Family-only by default.** The audio lives in the family's folder, not on a public page. Sharing is a deliberate act by the executor.
-6. **Deletion means deletion.** One command removes the sample, the clone on the provider, and every rendered file. Record how.
-7. **No posthumous generation beyond the plan.** The feature reads the plan the person wrote. It is not a chatbot in their voice, not a comfort simulation. Listening to a parent read their own plan is memory; generating new sentences in a dead person's voice is impersonation. We do the first, never the second.
+## Parked: talking portrait
 
-## Architecture (if we build this)
-
-- `skills/voice-echo/`: consent capture, sample recording (30-60 seconds read of a supplied passage), clone creation, render, deletion.
-- Provider abstraction with two backends: `fish` (hosted, default) and `local-neutts` (offline). Config keys: provider, api key name, consent file path.
-- Output convention: `shared/plan/voice/consent.mp3`, `sample.wav`, `plan-voice.mp3`, plus a manifest with the consent text, dates and hashes.
-- The website gains one section: "Your voice, your words" with the consent and synthetic-disclosure rules stated plainly, above any sample.
-
-## Sources (Oct 2026)
-
-- TTS comparison incl. Fish S2, MiniMax 2.8, ElevenLabs, Chatterbox, Inworld: ocdevel.com TTS roundup (Jul 2025, updated 2026)
-- Pricing and identity scores: clonemyvoice.ai comparison, reveo.news API comparison (Q1 2026)
-- Consumer tools and plan pricing: renderreport.com, fast.io roundups
-
-
-## Avatar: their face, their voice, reading their plan (researched Oct 2026)
-
-The simplest avatar is not a stack of open-source models. It is a still portrait plus the cloned voice audio, run through a hosted lipsync API. Providers that accept exactly that input (one photo + one audio file, no driving video):
-
-| Route | Input | Price | Notes |
-|---|---|---|---|
-| **Runway Lip Sync** | image/video + audio or text | 5 credits/sec = **$0.05/s**; up to 40s per dialogue, 10 dialogues, 2K | Key already in this house (rw-generate-video skill). 3-minute plan ~=  |
-| **Kling Avatar V2** | photo + audio, follows audio length (up to 5 min) | **$.056/s** on fal, **$.035/s** on PoYo (standard) | Cheapest quality route; 30s ~ .05-1.68 |
-| **OmniHuman 1.5** (BytePlus/fal) | image + audio, 5-35s steps | **$.12-0.16/s** | Whole-body motion, best realism; 3 min ~= 2-29. Final-render tool, not iteration |
-| **Higgsfield Speak / Lipsync Studio** | photo + audio, several models (Kling Speak, Wan Speak, Speak 2.0) | per-generation, roughly $.86-4.22 per 5s clip by model | Key already in this house (Higgsfield). Good for a first test |
-| **Seedance (BytePlus/fal)** | text/image to video | video only | No confirmed photo+audio lipsync path. Use for b-roll, not talking heads |
-| **Runway Act-Two** | needs a driving PERFORMANCE VIDEO | $0.05/s | Wrong tool here: we have a photo and audio, not footage of the person acting |
-| **Open source (MuseTalk/LatentSync/SadTalker)** | photo then audio pipeline | free except hardware | Needs GPU (8-18GB VRAM); CPU demo is 3-5s per frame. Only for strict offline families |
-
-### Recommendation (verified 19 October 2026)
-
-The public Runway API has **no lip-sync endpoint**. `POST /v1/lip_sync` returns 404 on `api.dev.runwayml.com`; Act-Two needs a driving performance video, so Runway is not the route for one photo plus one audio file. The working default is **Higgsfield Speak** (`POST /v1/speak/higgsfield`), which rendered this build end to end.
-
-- **Default: Higgsfield Speak**, mid quality. Photo plus cloned audio, split into parts of 15 seconds or less.
-- **Longer or more realistic: Kling Avatar V2 on fal or PoYo**, $0.035 to 0.056 per second, up to 5 minutes of audio in one job.
-- **Premium: OmniHuman 1.5**, $0.12 to 0.16 per second, whole-body motion.
-- **Offline only: MuseTalk, LatentSync or SadTalker** on a local GPU. Never the default.
-
-### Verified build notes
-
-- Audio must be **WAV, mono**, and duration is an integer of **5, 10 or 15**. Anything longer is cut at 15 seconds, so split the script at sentence boundaries and assert each part is under 15.4 seconds.
-- Params are nested: `{"params": {"input_image": {"type": "image_url", "image_url": ...}, "input_audio": {"type": "audio_url", "audio_url": ...}, "prompt": ..., "quality": "mid", "duration": 15}}`.
-- Poll `GET /requests/<id>/status`; on `completed` the file is at `video.url` in that same JSON. `GET /requests/<id>` is 405.
-- Speak returns **video only**. Mux each clip with its audio: `ffmpeg -i clip.mp4 -i part.wav -map 0:v -map 1:a -c:a aac -shortest mux.mp4`, then concat.
-- Disclosure card: draw with Pillow (ffmpeg drawtext breaks on apostrophes), loop the PNG for 4 seconds with a silent track.
-- Finish with `loudnorm=I=-16:TP=-1.5:LRA=11`; the muxed AAC peaks at 0 dB without it.
-- Demo files: `docs/demo/epilogue-voice-demo.mp4`, `docs/demo/script.txt`.
-
-### Assembly
-
-voice (.mp3) + portrait (.jpg) -> lipsync API per chapter -> ffmpeg concat -> plan-avatar.mp4 in the family folder, with a 5-second synthetic-disclosure card as the first frame and the consent file beside it. Same ethics section above applies unchanged, and the avatar never speaks anything the person did not write.
+Tested 19 Oct 2026: portrait photo plus cloned audio through Higgsfield Speak (15-second clips, hard cut past 15s, video-only output needing a per-clip audio mux), assembled with a disclosure card. Verdict: parked by the owner as too uncanny and too much machinery for a funeral-adjacent product. Runway's public API has no lip-sync endpoint (404, verified). Kling Avatar V2 and OmniHuman remain the routes if this ever returns. The demo video and skill remain in git history.
